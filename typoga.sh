@@ -18,12 +18,15 @@ wordCount=-1 # Number of words completed
 # File to get list of words or phrases
 filew='phrases.txt'
 #filew='programing.txt'
-###################
 
 # Read the file
 words=(`cat $filew`)
 
 NUMBER_OF_LINES=$(wc -l $filew | cut -f1 -d' ')
+
+echo "Press '?' any time to exit."
+read -n 1 -s -p "Press any key to continue"
+echo ""
 
 startTime=`date +%s`
 while true;do
