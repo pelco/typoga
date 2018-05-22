@@ -28,6 +28,8 @@ echo "Press '?' any time to exit."
 read -n 1 -s -p "Press any key to continue"
 echo ""
 
+################__GAME__################
+
 startTime=`date +%s`
 while true;do
 
@@ -81,7 +83,9 @@ done
 
 endTime=`date +%s`
 runtimeMin=$((endTime-startTime))
-#########################################
+
+#################__SCORE__################
+
 if [ "$scFactor" -gt 0 ]; then
     # Calculate Accuracy
     echo -n "Accuracy (%): (${score}/${maxScore}) = "
@@ -99,6 +103,6 @@ if [ "$scFactor" -gt 0 ]; then
     var3 = acc*spe*scf;
     var3" | bc
 else
-    echo "You need to reach a lest $MinChar2Score characters to get a score"
+    echo "You need to reach a least $MinChar2Score characters to get a score."
 fi
 
