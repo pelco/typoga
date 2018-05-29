@@ -10,7 +10,7 @@ hsFile='highScore.txt'
 # Read Highest score
 hscore=$(head -n 2 $hsFile | sed -n -e 2p | awk -F ':' '{print $2}')
 
-MinChar2Score=100 # Minimum number of chars to get score
+MinChar2Score=80 # Minimum number of chars to get score
 
 # Every time user reaches multiple of MinChar2Score 
 # the Score is increased +10%: 1 -> 10%, 2 -> 20%
