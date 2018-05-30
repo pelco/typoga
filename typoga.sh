@@ -17,7 +17,7 @@ MinChar2Score=80 # Minimum number of chars to get score
 scFactor=0
 
 score=0 # Stores the number of times you press the keyboard
-maxScore=0 # Stores the total number of characters 
+maxNChar=0 # Stores the total number of characters
 wordCount=-1 # Number of words completed
 missedChar=-1 # Number of times you miss the character
 
@@ -30,9 +30,10 @@ words=(`cat $fileW`)
 
 NUMBER_OF_LINES=$(wc -l $fileW | cut -f1 -d' ')
 clear
+echo ""
 echo "Welcome to Typoga. Score to Beat: ${green}$hscore${reset}"
 echo "Press '?' any time to finish game."
-read -n 1 -s -p "Press any key to continue"
+read -n 1 -s -p "Press any key to continue "
 echo ""
 
 ################__GAME__################
@@ -57,11 +58,11 @@ while true;do
             wordChar="${word:$i:1}"
 
             if [ "$char" != "?" ]; then
-                ((maxScore++))
+                ((maxNChar++))
             fi
 
             # Increase score by +10%
-            if [ $(($maxScore%$MinChar2Score)) -eq 0 ];then
+            if [ $(($maxNChar%$MinChar2Score)) -eq 0 ];then
                 ((scFactor++))
             fi
 
@@ -95,17 +96,17 @@ runtimeSec=$((endTime-startTime))
 
 #################__SCORE__################
 # Only show score wit we reach at least once MinChar2Score and started playing it
-if [ "$scFactor" -gt 0 ] && [ "$maxScore" -gt 0 ]; then
+if [ "$scFactor" -gt 0 ] && [ "$maxNChar" -gt 0 ]; then
     # Calculate Accuracy
-    acc=$(echo "scale=2; acc = (${score}*100)/${maxScore}; acc" | bc)
-    echo "Accuracy: (${score}/${maxScore}) = $acc %"
+    acc=$(echo "scale=2; acc = (${score}*100)/${maxNChar}; acc" | bc)
+    echo "Accuracy: (${score}/${maxNChar}) = $acc %"
 
     # Calculate Words Per Minute
     wpm=$(echo "scale=2; spe = (${wordCount}*60)/${runtimeSec}; spe" | bc)
     echo "Speed: $wpm wpm"
 
     # Calculate Score
-    sc=$(echo "scale=2; acc = (${score}*100)/${maxScore};
+    sc=$(echo "scale=2; acc = (${score}*100)/${maxNChar};
     spe = (${wordCount}*60)/${runtimeSec};
     scf = ${scFactor}/10 + 1;
     var3 = acc*spe*scf;
