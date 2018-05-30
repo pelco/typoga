@@ -31,7 +31,7 @@ words=(`cat $fileW`)
 NUMBER_OF_LINES=$(wc -l $fileW | cut -f1 -d' ')
 clear
 echo "Welcome to Typoga. Score to Beat: ${green}$hscore${reset}"
-echo "Press '?' any time to exit."
+echo "Press '?' any time to finish game."
 read -n 1 -s -p "Press any key to continue"
 echo ""
 
@@ -42,12 +42,13 @@ while true;do
 
     # Get Random Word every time
     rNum=$(( $RANDOM % $NUMBER_OF_LINES ))
-	word=${words[rNum]}
+    word=${words[rNum]}
 
     ((wordCount++))
-	echo ": ${word}"
+    echo ": ${word}"
+    echo -n ": "
 
-	for i in `seq 0 $(( ${#word} -1 ))`; do
+    for i in `seq 0 $(( ${#word} -1 ))`; do
 
         # Check if user wants to end game.        
         while [ "$char" != "?" ];do
@@ -81,7 +82,7 @@ while true;do
                 fi
             fi
         done
-	done
+    done
 
     if [ "$char" == "?" ]; then
         printf "\n"
@@ -109,7 +110,6 @@ if [ "$scFactor" -gt 0 ] && [ "$maxScore" -gt 0 ]; then
     scf = ${scFactor}/10 + 1;
     var3 = acc*spe*scf;
     var3" | bc)
-    echo "Score: $sc "
 
     # Store results into the file
     #timeSince19700101:score:acc:wpm:n_Words:n_missedCharacters:runTime
@@ -117,7 +117,10 @@ if [ "$scFactor" -gt 0 ] && [ "$maxScore" -gt 0 ]; then
     echo $result >> $hsFile
     # Replace high score)
     if [ "$(echo "$sc>$hscore" | bc -l)" -eq 1 ]; then
+        echo "Score: $sc ${green}New High Score!${reset}"
         sed -i "2s/.*/$result/" $hsFile
+    else
+        echo "Score: $sc "
     fi
 
 else
