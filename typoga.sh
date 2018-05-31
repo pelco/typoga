@@ -16,8 +16,8 @@ MinChar2Score=80 # Minimum number of chars to get score
 # the Score is increased +10%: 1 -> 10%, 2 -> 20%
 scFactor=0
 
-score=0 # Stores the number of times you press the keyboard
-maxNChar=0 # Stores the total number of characters
+score=0 # Saves the score. +1 if its a hit and -1 if its a miss
+maxNChar=0 # Saves the total of hit characters
 wordCount=-1 # Number of words completed
 missedChar=-1 # Number of times you miss the character
 
@@ -41,7 +41,7 @@ echo ""
 startTime=`date +%s`
 while true;do
 
-    # Get Random Word every time
+    # Get random word every time
     rNum=$(( $RANDOM % $NUMBER_OF_LINES ))
     word=${words[rNum]}
 
@@ -57,18 +57,15 @@ while true;do
 
             wordChar="${word:$i:1}"
 
-            if [ "$char" != "?" ]; then
-                ((maxNChar++))
-            fi
-
             # Increase score by +10%
-            if [ $(($maxNChar%$MinChar2Score)) -eq 0 ];then
+            if [ $(($maxNChar%$MinChar2Score)) -eq 0 ]; then
                 ((scFactor++))
             fi
 
             if [ "$char" == $wordChar ]; then
                 printf "${green}${wordChar}${reset}"
                 ((score++))
+                ((maxNChar++))
                 # Count words when dealing with phrases
                 if [ "$char" == " " ]; then
                     ((wordCount++))
@@ -78,7 +75,7 @@ while true;do
                 # Count number of times missed
                 ((missedChar++))
                 #Remove score points for each missed character of the word
-                if [ ! "$score" -eq 0 ];then
+                if [ ! "$score" -eq 0 ] && [ "$char" != "?" ]; then
                      ((score--))
                 fi
             fi
@@ -86,7 +83,7 @@ while true;do
     done
 
     if [ "$char" == "?" ]; then
-        printf "\n"
+        printf "\n\n"
         break
     fi
     echo ""
@@ -113,7 +110,7 @@ if [ "$scFactor" -gt 0 ] && [ "$maxNChar" -gt 0 ]; then
     var3" | bc)
 
     # Store results into the file
-    #timeSince19700101:score:acc:wpm:n_Words:n_missedCharacters:runTime
+    # timeSince19700101:score:acc:wpm:n_Words:n_missedCharacters:runTime
     result="$startTime:$sc:$acc:$wpm:$wordCount:$missedChar:$runtimeSec"
     echo $result >> $hsFile
     # Replace high score)
