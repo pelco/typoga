@@ -58,11 +58,11 @@ while true;do
             wordChar="${word:$i:1}"
 
             # Increase score by +10%
-            if [ $(($maxNChar%$MinChar2Score)) -eq 0 ]; then
+            if [ $(($maxNChar%$MinChar2Score)) -eq 0 ] && [ ! $maxNChar -eq 0 ]; then
                 ((scFactor++))
             fi
 
-            if [ "$char" == $wordChar ]; then
+            if [ $char == $wordChar ]; then
                 printf "${green}${wordChar}${reset}"
                 ((score++))
                 ((maxNChar++))
@@ -93,7 +93,7 @@ runtimeSec=$((endTime-startTime))
 
 #################__SCORE__################
 # Only show score wit we reach at least once MinChar2Score and started playing it
-if [ "$scFactor" -gt 0 ] && [ "$maxNChar" -gt 0 ]; then
+if [ $scFactor -gt 0 ] && [ $maxNChar -gt 0 ]; then
     # Calculate Accuracy
     acc=$(echo "scale=2; acc = (${score}*100)/${maxNChar}; acc" | bc)
     echo "Accuracy: (${score}/${maxNChar}) = $acc %"
