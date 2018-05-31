@@ -122,5 +122,5 @@ if [ $scFactor -gt 0 ] && [ $maxNChar -gt 0 ]; then
     fi
 
 else
-    echo "You need to reach a least $MinChar2Score characters to get a score."
+    echo "You need at least hit $MinChar2Score characters to get a score."
 fi
