@@ -62,7 +62,7 @@ while true;do
                 ((scFactor++))
             fi
 
-            if [ $char == $wordChar ]; then
+            if [ "$char" == "$wordChar" ]; then
                 printf "${green}${wordChar}${reset}"
                 ((score++))
                 ((maxNChar++))
