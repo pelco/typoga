@@ -110,8 +110,8 @@ if [ $scFactor -gt 0 ] && [ $maxNChar -gt 0 ]; then
     var3" | bc)
 
     # Store results into the file
-    # timeSince19700101:score:acc:wpm:n_Words:n_missedCharacters:runTime
-    result="$startTime:$sc:$acc:$wpm:$wordCount:$missedChar:$runtimeSec"
+    # timeSince19700101:score:acc:wpm:n_Words:n_hitChars:n_missedChars:runTime
+    result="$startTime:$sc:$acc:$wpm:$wordCount:$maxNChar:$missedChar:$runtimeSec"
     echo $result >> $hsFile
     # Replace high score)
     if [ "$(echo "$sc>$hscore" | bc -l)" -eq 1 ]; then

@@ -1,3 +1,3 @@
-#timeSince19700101:score:acc:wpm:n_Words:n_missedCharacters:runTime
-0:0:0:0:0:0:0
+# timeSince19700101:score:acc:wpm:n_Words:n_hitChars:n_missedChars:runTime
+0:0:0:0:0:0:0:0
 ___________________________________________________________________
