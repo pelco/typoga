@@ -10,14 +10,13 @@ hsFile='highScore.txt'
 # Read Highest score
 hscore=$(head -n 2 $hsFile | sed -n -e 2p | awk -F ':' '{print $2}')
 
-MinChar2Score=80 # Minimum number of chars to get score
+MinChar2Score=80 # Minimum number of chars to hit
 
 # Every time user reaches multiple of MinChar2Score 
 # the Score is increased +10%: 1 -> 10%, 2 -> 20%
 scFactor=0
 
-score=0 # Saves the score. +1 if its a hit and -1 if its a miss
-maxNChar=0 # Saves the total of hit characters
+hitChar=0 # Saves the total of hit characters
 wordCount=-1 # Number of words completed
 missedChar=-1 # Number of times you miss the character
 
@@ -58,14 +57,13 @@ while true;do
             wordChar="${word:$i:1}"
 
             # Increase score by +10%
-            if [ $(($maxNChar%$MinChar2Score)) -eq 0 ] && [ ! $maxNChar -eq 0 ]; then
+            if [ $(($hitChar%$MinChar2Score)) -eq 0 ] && [ ! $hitChar -eq 0 ]; then
                 ((scFactor++))
             fi
 
             if [ "$char" == "$wordChar" ]; then
                 printf "${green}${wordChar}${reset}"
-                ((score++))
-                ((maxNChar++))
+                ((hitChar++))
                 # Count words when dealing with phrases
                 if [ "$char" == " " ]; then
                     ((wordCount++))
@@ -74,10 +72,6 @@ while true;do
             else
                 # Count number of times missed
                 ((missedChar++))
-                #Remove score points for each missed character of the word
-                if [ ! "$score" -eq 0 ] && [ "$char" != "?" ]; then
-                     ((score--))
-                fi
             fi
         done
     done
@@ -90,20 +84,21 @@ while true;do
 done
 endTime=`date +%s`
 runtimeSec=$((endTime-startTime))
+totalChar=$((hitChar+missedChar))
 
 #################__SCORE__################
 # Only show score wit we reach at least once MinChar2Score and started playing it
-if [ $scFactor -gt 0 ] && [ $maxNChar -gt 0 ]; then
+if [ $scFactor -gt 0 ] && [ $hitChar -gt 0 ]; then
     # Calculate Accuracy
-    acc=$(echo "scale=2; acc = (${score}*100)/${maxNChar}; acc" | bc)
-    echo "Accuracy: (${score}/${maxNChar}) = $acc %"
+    acc=$(echo "scale=2; acc = (${hitChar}*100)/${totalChar}; acc" | bc)
+    echo "Accuracy: (${hitChar}/${totalChar}) = $acc %"
 
     # Calculate Words Per Minute
     wpm=$(echo "scale=2; spe = (${wordCount}*60)/${runtimeSec}; spe" | bc)
     echo "Speed: $wpm wpm"
 
     # Calculate Score
-    sc=$(echo "scale=2; acc = (${score}*100)/${maxNChar};
+    sc=$(echo "scale=2; acc = (${hitChar}*100)/${totalChar};
     spe = (${wordCount}*60)/${runtimeSec};
     scf = ${scFactor}/10 + 1;
     var3 = acc*spe*scf;
@@ -111,7 +106,7 @@ if [ $scFactor -gt 0 ] && [ $maxNChar -gt 0 ]; then
 
     # Store results into the file
     # timeSince19700101:score:acc:wpm:n_Words:n_hitChars:n_missedChars:runTime
-    result="$startTime:$sc:$acc:$wpm:$wordCount:$maxNChar:$missedChar:$runtimeSec"
+    result="$startTime:$sc:$acc:$wpm:$wordCount:$hitChar:$missedChar:$runtimeSec"
     echo $result >> $hsFile
     # Replace high score)
     if [ "$(echo "$sc>$hscore" | bc -l)" -eq 1 ]; then
