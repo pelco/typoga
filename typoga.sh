@@ -20,9 +20,8 @@ hitChar=0 # Saves the total of hit characters
 wordCount=-1 # Number of words completed
 missedChar=-1 # Number of times you miss the character
 
-# File to get list of words or phrases
-fileW='phrases.txt'
-#fileW='programing.txt'
+# Get list of words or phrases
+fileW='words_phrases/phrases.txt'
 
 # Read the file
 words=(`cat $fileW`)
