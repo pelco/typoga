@@ -63,9 +63,7 @@ badblocks
 baremetal
 basename
 bash
-bash
 basic
-batch
 batch
 bc
 bcmp
@@ -79,7 +77,6 @@ bloatware
 bool
 boot
 bootstrap
-break
 break
 brownfield
 bsearch
@@ -113,7 +110,6 @@ cfmakeraw
 cgi
 chage
 char
-char
 char16_t
 char32_t
 character
@@ -130,7 +126,6 @@ chroot
 chsh
 chvt
 cksum
-class
 class
 clean
 clear
@@ -161,7 +156,6 @@ compression
 concept
 confstr
 const
-const
 const_cast
 constexpr
 container
@@ -184,7 +178,6 @@ ctime
 currentcontext
 cursor
 cuserid
-cut
 cut
 cvs
 daemon
@@ -233,7 +226,6 @@ doexec
 donationware
 dos
 double
-double
 drem
 driver
 du
@@ -281,7 +273,6 @@ expand
 expect
 explicit
 export
-export
 exportfs
 expr
 ext2ed
@@ -309,7 +300,6 @@ fgetc
 fgetpos
 fgets
 fgrep
-file
 file
 filename
 fileno
@@ -416,7 +406,6 @@ gpic
 gpm
 greenfield
 grep
-grep
 groff
 grog
 grops
@@ -436,7 +425,6 @@ gw
 gzexe
 gzip
 halt
-hash
 hash
 hcreate
 hdestroy
@@ -468,8 +456,6 @@ ifconfig
 ifnames
 igawk
 import
-import
-index
 index
 inet
 inetd
@@ -482,7 +468,6 @@ initstate
 inline
 insmod
 insque
-install
 install
 installer
 int
@@ -664,7 +649,6 @@ modprobe
 module
 more
 mount
-mount
 mpage
 mpool
 mt
@@ -727,14 +711,12 @@ panel
 parameter
 passwd
 paste
-paste
 patch
 path
 pathchk
 pathconf
 pcinitrd
 pclose
-perl
 perl
 perldoc
 perror
@@ -796,7 +778,6 @@ pwconv
 pwd
 pwunconv
 python
-python
 qbe
 query
 quicktime
@@ -835,7 +816,6 @@ refer
 regcomp
 regex
 regexec
-register
 register
 registry
 reimage
@@ -903,7 +883,6 @@ screen
 screendump
 screenshot
 script
-script
 scrolling
 sdiff
 sdk
@@ -912,7 +891,6 @@ sed
 seekdir
 sendmail
 seq
-service
 service
 setbuf
 setclock
@@ -1027,7 +1005,6 @@ strtok
 strtol
 strtoul
 struct
-struct
 stty
 su
 subdirectory
@@ -1048,8 +1025,6 @@ syntax
 sysconf
 syslog
 syslogd
-system
-system
 system
 systray
 sz
@@ -1075,7 +1050,6 @@ tee
 telldir
 telnet
 template
-template
 tempnam
 terminal
 termios
@@ -1086,7 +1060,6 @@ tftp
 this
 thread_local
 throw
-thumbnail
 thumbnail
 tic
 tiger
