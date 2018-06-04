@@ -13,7 +13,7 @@ hscore=$(head -n 2 $hsFile | sed -n -e 2p | awk -F ':' '{print $2}')
 MinChar2Score=80 # Minimum number of chars to hit
 
 # Every time user reaches multiple of MinChar2Score 
-# the Score is increased +10%: 1 -> 10%, 2 -> 20%
+# the Score is increased +1%:  1 -> 1%, 2 -> 2%
 scFactor=0
 
 hitChar=0 # Saves the total of hit characters
@@ -49,7 +49,7 @@ while true;do
 
     for i in `seq 0 $(( ${#word} -1 ))`; do
 
-        # Check if user wants to end game.        
+        # Check if user wants to end game.
         while [ "$char" != "?" ];do
             read -n 1 -s char
 
@@ -92,20 +92,21 @@ if [ $scFactor -gt 0 ] && [ $hitChar -gt 0 ]; then
     acc=$(echo "scale=2; acc = (${hitChar}*100)/${totalChar}; acc" | bc)
     echo "Accuracy: (${hitChar}/${totalChar}) = $acc %"
 
-    # Calculate Words Per Minute
+    # Calculate Words/Characters Per Minute
     wpm=$(echo "scale=2; spe = (${wordCount}*60)/${runtimeSec}; spe" | bc)
-    echo "Speed: $wpm wpm"
+    cpm=$(echo "scale=2; spe = (${hitChar}*60)/${runtimeSec}; spe" | bc)
+    echo "Speed: $wpm wpm, $cpm cpm"
 
     # Calculate Score
     sc=$(echo "scale=2; acc = (${hitChar}*100)/${totalChar};
-    spe = (${wordCount}*60)/${runtimeSec};
-    scf = ${scFactor}/10 + 1;
+    spe = (${hitChar}*60)/${runtimeSec};
+    scf = ${scFactor}/100 + 1;
     var3 = acc*spe*scf;
     var3" | bc)
 
     # Store results into the file
-    # timeSince19700101:score:acc:wpm:n_Words:n_hitChars:n_missedChars:runTime
-    result="$startTime:$sc:$acc:$wpm:$wordCount:$hitChar:$missedChar:$runtimeSec"
+    # epochTime:score:acc:wpm:cpm:n_Words:n_hitChars:n_missedChars:runTime
+    result="$startTime:$sc:$acc:$wpm:$cpm:$wordCount:$hitChar:$missedChar:$runtimeSec"
     echo $result >> $hsFile
     # Replace high score)
     if [ "$(echo "$sc>$hscore" | bc -l)" -eq 1 ]; then
