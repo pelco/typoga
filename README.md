@@ -1,16 +1,29 @@
-# Typoga
+Typoga
+======
+
 Typoga is a different touch typing game.
 
 #### Description
-Hey, you need to try Typoga! xD
-Typoga is touch typing game where you need to type (as fast as you can) phrases to earn a score. 
-The more accurate and faster you type, the higher your score will get.
-All your scores are saved so that you can track your progress
+
+Hey, you need to try out Typoga! xD Typoga is touch typing game where you need
+to type (as fast as you can) phrases to earn a score. The more accurate and
+faster you type, the higher your score will get. All your scores are saved so
+that you can track your progress
 
 #### Instructions
+
 Run:
 
-$ ./typoga.sh
+\$ ./typoga.sh
 
 Type "?" anytime to exit!
 
+ 
+
+Releases:
+---------
+
+| Release | Description                                                                                                                                                                                                                                 |
+|---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| v2018.1 | Initial release. Game implements basic functionality. Based in the script: https://github.com/Orbmancer/bash-typing-game                                                                                                                    |
+| v2018.2 | \- Score calculation was adjusted.  - Added minimum hit characters to get score. - Score is now saved to file named **highScore.txt.** - Fixed typos, and minor bugs. - Created folder to store the phrases. - Reduced some of the phrases. |
