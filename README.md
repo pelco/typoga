@@ -23,7 +23,23 @@ Type "?" anytime to exit!
 Releases:
 ---------
 
-| Release | Description                                                                                                                                                                                                                                 |
-|---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| v2018.1 | Initial release. Game implements basic functionality. Based in the script: https://github.com/Orbmancer/bash-typing-game                                                                                                                    |
-| v2018.2 | \- Score calculation was adjusted.  - Added minimum hit characters to get score. - Score is now saved to file named **highScore.txt.** - Fixed typos, and minor bugs. - Created folder to store the phrases. - Reduced some of the phrases. |
+**v2018.1:**
+
+-   Initial release.
+
+    -   Game implements basic functionality.
+
+    -   Based in the script: https://github.com/Orbmancer/bash-typing-game
+
+**v2018.2:**
+
+-   Score calculation improvement. Added minimum hit chars to get score,
+    calculation of chars per minute.
+
+    -   Score is now read/saved to file named **highScore.txt.**
+
+    -   Fixed typos, and minor bugs.
+
+    -   Created folder to store the files phrases/words.
+
+    -   Reduced some of the phrases in phrases.txt.
