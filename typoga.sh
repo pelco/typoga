@@ -2,6 +2,7 @@
 
 IFS=$'\n'
 
+red=`tput setaf 1`
 green=`tput setaf 2`
 reset=`tput sgr0`
 
@@ -48,31 +49,32 @@ while true;do
     echo -n ": "
 
     for i in `seq 0 $(( ${#word} -1 ))`; do
+        read -n 1 -s char
+
+        wordChar="${word:$i:1}"
+
+        # Increase score by +10%
+        if [ $(($hitChar%$MinChar2Score)) -eq 0 ] && [ ! $hitChar -eq 0 ]; then
+            ((scFactor++))
+        fi
+
+        if [ "$char" == "$wordChar" ]; then
+            printf "${green}${wordChar}${reset}"
+            ((hitChar++))
+            # Count words when dealing with phrases
+            if [ "$char" == " " ]; then
+                ((wordCount++))
+            fi
+        else
+            printf "${red}${wordChar}${reset}"
+            # Count number of times missed
+            ((missedChar++))
+        fi
 
         # Check if user wants to end game.
-        while [ "$char" != "?" ];do
-            read -n 1 -s char
-
-            wordChar="${word:$i:1}"
-
-            # Increase score by +10%
-            if [ $(($hitChar%$MinChar2Score)) -eq 0 ] && [ ! $hitChar -eq 0 ]; then
-                ((scFactor++))
-            fi
-
-            if [ "$char" == "$wordChar" ]; then
-                printf "${green}${wordChar}${reset}"
-                ((hitChar++))
-                # Count words when dealing with phrases
-                if [ "$char" == " " ]; then
-                    ((wordCount++))
-                fi
-                break
-            else
-                # Count number of times missed
-                ((missedChar++))
-            fi
-        done
+        if [ "$char" == "?" ]; then
+            break
+        fi
     done
 
     if [ "$char" == "?" ]; then
@@ -119,3 +121,5 @@ if [ $scFactor -gt 0 ] && [ $hitChar -gt 0 ]; then
 else
     echo "You need at least hit $MinChar2Score characters to get a score."
 fi
+
+exit 0
