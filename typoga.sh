@@ -66,7 +66,12 @@ while true;do
                 ((wordCount++))
             fi
         else
-            printf "${red}${wordChar}${reset}"
+            # Print "_" when missing a space
+            if [ "$wordChar" == " " ]; then
+                printf "${red}_${reset}"
+            else
+                printf "${red}${wordChar}${reset}"
+            fi
             # Count number of times missed
             ((missedChar++))
         fi
