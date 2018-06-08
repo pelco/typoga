@@ -122,7 +122,6 @@ if [ $scFactor -gt 0 ] && [ $hitChar -gt 0 ]; then
     else
         echo "Score: $sc "
     fi
-
 else
     echo "You need at least hit $MinChar2Score characters to get a score."
 fi
