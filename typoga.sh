@@ -19,7 +19,7 @@ scFactor=0
 
 hitChar=0 # Saves the total of hit characters
 wordCount=-1 # Number of words completed
-missedChar=-1 # Number of times you miss the character
+missedChar=0 # Number of times you miss the character
 
 # Get list of words or phrases
 fileW='words_phrases/phrases.txt'
@@ -51,6 +51,11 @@ while true;do
     for i in `seq 0 $(( ${#word} -1 ))`; do
         read -n 1 -s char
 
+        # Check if user wants to end game.
+        if [ "$char" == "?" ]; then
+            break
+        fi
+
         wordChar="${word:$i:1}"
 
         # Increase score by +10%
@@ -74,11 +79,6 @@ while true;do
             fi
             # Count number of times missed
             ((missedChar++))
-        fi
-
-        # Check if user wants to end game.
-        if [ "$char" == "?" ]; then
-            break
         fi
     done
 
