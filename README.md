@@ -23,14 +23,6 @@ Type "?" anytime to exit!
 Releases:
 ---------
 
-**v2018.1:**
-
--   Initial release.
-
--   Game implements basic functionality.
-
--   Based in the script: https://github.com/Orbmancer/bash-typing-game
-
 **v2018.2:**
 
 -   Score calculation improvement. Added minimum hit chars to get score,
@@ -43,3 +35,11 @@ Releases:
 -   Created folder to store the files phrases/words.
 
 -   Reduced some of the phrases in phrases.txt.
+
+**v2018.1:**
+
+-   Initial release.
+
+-   Game implements basic functionality.
+
+-   Based in the script: https://github.com/Orbmancer/bash-typing-game
