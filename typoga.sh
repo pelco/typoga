@@ -24,6 +24,8 @@ missedChar=0 # Number of times you miss the character
 # Get list of words or phrases
 fileW='words_phrases/phrases.txt'
 
+# File to store missed chars
+fileMC='misses.txt'
 # Read the file
 words=(`cat $fileW`)
 
@@ -35,6 +37,15 @@ echo "Press '?' any time to finish game."
 read -n 1 -s -p "Press any key to continue "
 echo ""
 
+# Function that initializes fileMC at the beginning of each phrase
+function init_miss_f {
+    echo "" >> $fileMC
+    echo -n "$startTime,$rNum:" >> $fileMC
+}
+function write_miss {
+    echo -n "[$i:$char]," >> $fileMC
+}
+
 ################__GAME__################
 
 startTime=`date +%s`
@@ -43,6 +54,9 @@ while true;do
     # Get random word every time
     rNum=$(( $RANDOM % $NUMBER_OF_LINES ))
     word=${words[rNum]}
+
+    # Initialize miss file
+    init_miss_f
 
     ((wordCount++))
     echo ": ${word}"
@@ -79,6 +93,8 @@ while true;do
             fi
             # Count number of times missed
             ((missedChar++))
+            # Store miss to file
+            write_miss
         fi
     done
 
