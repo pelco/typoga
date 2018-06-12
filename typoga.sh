@@ -24,6 +24,9 @@ missedChar=0 # Number of times you miss the character
 # Get list of words or phrases
 fileW='words_phrases/phrases.txt'
 
+# Indicates if phrase was typed until the end. Penalize socre 10% if not.
+incompletePhrase=0
+
 # File to store missed chars
 fileMC='misses.txt'
 # Read the file
@@ -61,7 +64,7 @@ while true;do
     ((wordCount++))
     echo ": ${word}"
     echo -n ": "
-
+    incompletePhrase=0 # Here we are at beginning of a phrase
     for i in `seq 0 $(( ${#word} -1 ))`; do
         read -n 1 -s char
 
@@ -69,7 +72,7 @@ while true;do
         if [ "$char" == "?" ]; then
             break
         fi
-
+        incompletePhrase=1 # User started typing phrase, mark as incomplete
         wordChar="${word:$i:1}"
 
         # Increase score by +10%
@@ -123,7 +126,7 @@ if [ $scFactor -gt 0 ] && [ $hitChar -gt 0 ]; then
     # Calculate Score
     sc=$(echo "scale=2; acc = (${hitChar}*100)/${totalChar};
     spe = (${hitChar}*60)/${runtimeSec};
-    scf = ${scFactor}/100 + 1;
+    scf = ${scFactor}/100 + 1 - ${incompletePhrase}/10;
     var3 = acc*spe*scf;
     var3" | bc)
 
