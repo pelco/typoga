@@ -46,7 +46,7 @@ function init_miss_f {
     echo -n "$startTime,$rNum:" >> $fileMC
 }
 function write_miss {
-    echo -n "[$i:$char]," >> $fileMC
+    echo -n "[$i:$wordChar:$char]," >> $fileMC
 }
 
 ################__GAME__################
