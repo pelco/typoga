@@ -18,7 +18,8 @@ MinChar2Score=80 # Minimum number of chars to hit
 scFactor=0
 
 hitChar=0 # Saves the total of hit characters
-wordCount=-1 # Number of words completed
+wordCount=-1 # Number of correct words completed
+wrongWord=0 # Indicates if word was wrongly typed
 missedChar=0 # Number of times you miss the character
 
 # Get list of words or phrases
@@ -61,7 +62,11 @@ while true;do
     # Initialize miss file
     init_miss_f
 
-    ((wordCount++))
+    # Check if last word correctly typed
+    if [ $wrongWord -eq 0 ]; then
+        ((wordCount++))
+    fi
+    wrongWord=0
     echo ": ${word}"
     echo -n ": "
     incompletePhrase=0 # Here we are at beginning of a phrase
@@ -85,7 +90,11 @@ while true;do
             ((hitChar++))
             # Count words when dealing with phrases
             if [ "$char" == " " ]; then
-                ((wordCount++))
+                # Check if word was correctly typed
+                if [ $wrongWord -eq 0 ]; then
+                    ((wordCount++))
+                fi
+                wrongWord=0
             fi
         else
             # Print "_" when missing a space
@@ -94,6 +103,7 @@ while true;do
             else
                 printf "${red}${wordChar}${reset}"
             fi
+            wrongWord=1 # Signalize wrong word typed
             # Count number of times missed
             ((missedChar++))
             # Store miss to file
