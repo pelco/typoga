@@ -25,7 +25,7 @@ missedChar=0 # Number of times you miss the character
 # Get list of words or phrases
 fileW='words_phrases/phrases.txt'
 
-# Indicates if phrase was typed until the end. Penalize socre 10% if not.
+# Indicates if phrase was typed until the end. Penalize score 10% if not.
 incompletePhrase=0
 
 # File to store missed chars
@@ -89,7 +89,7 @@ while true;do
             printf "${green}${wordChar}${reset}"
             ((hitChar++))
             # Count words when dealing with phrases
-            if [ "$char" == " " ]; then
+            if [ "$wordChar" == " " ]; then
                 # Check if word was correctly typed
                 if [ $wrongWord -eq 0 ]; then
                     ((wordCount++))
@@ -100,10 +100,11 @@ while true;do
             # Print "_" when missing a space
             if [ "$wordChar" == " " ]; then
                 printf "${red}_${reset}"
+                wrongWord=0
             else
                 printf "${red}${wordChar}${reset}"
+                wrongWord=1 # Signalize wrong word typed
             fi
-            wrongWord=1 # Signalize wrong word typed
             # Count number of times missed
             ((missedChar++))
             # Store miss to file
