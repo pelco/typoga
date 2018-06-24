@@ -49,6 +49,13 @@ function init_miss_f {
 function write_miss {
     echo -n "[$i:$wordChar:$char]," >> $fileMC
 }
+# Update word count to calculate wpm
+function upWordCount {
+    if [ $wrongWord -eq 0 ]; then
+        ((wordCount++))
+    fi
+    wrongWord=0
+}
 
 ################__GAME__################
 
@@ -62,11 +69,8 @@ while true;do
     # Initialize miss file
     init_miss_f
 
-    # Check if last word correctly typed
-    if [ $wrongWord -eq 0 ]; then
-        ((wordCount++))
-    fi
-    wrongWord=0
+    # Check if last word correctly typed and update word count
+    upWordCount
     echo ": ${word}"
     echo -n ": "
     incompletePhrase=0 # Here we are at beginning of a phrase
@@ -90,11 +94,8 @@ while true;do
             ((hitChar++))
             # Count words when dealing with phrases
             if [ "$wordChar" == " " ]; then
-                # Check if word was correctly typed
-                if [ $wrongWord -eq 0 ]; then
-                    ((wordCount++))
-                fi
-                wrongWord=0
+                # Check if last word correctly typed and update word count
+                upWordCount
             fi
         else
             # Print "_" when missing a space
