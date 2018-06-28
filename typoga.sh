@@ -85,7 +85,6 @@ NUMBER_OF_LINES=$(wc -l $fileW | cut -f1 -d' ')
 
 # Check if we have a place to store/read scores
 checkScoresFile $fileW
-checkScoresFile "a/a.txt"
 
 # Read Highest score
 hscore=$(head -n 2 $hsFile | sed -n -e 2p | awk -F ':' '{print $2}')
