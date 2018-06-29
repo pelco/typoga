@@ -6,11 +6,6 @@ red=`tput setaf 1`
 green=`tput setaf 2`
 reset=`tput sgr0`
 
-# File to read/write highScore. First line has highest score
-hsFile='highScore.txt'
-# Read Highest score
-hscore=$(head -n 2 $hsFile | sed -n -e 2p | awk -F ':' '{print $2}')
-
 MinChar2Score=80 # Minimum number of chars to hit
 
 # Every time user reaches multiple of MinChar2Score 
@@ -22,32 +17,16 @@ wordCount=-1 # Number of correct words completed
 wrongWord=0 # Indicates if word was wrongly typed
 missedChar=0 # Number of times you miss the character
 
-# Get list of words or phrases
-fileW='words_phrases/phrases.txt'
-
 # Indicates if phrase was typed until the end. Penalize score 10% if not.
 incompletePhrase=0
 
-# File to store missed chars
-fileMC='misses.txt'
-# Read the file
-words=(`cat $fileW`)
-
-NUMBER_OF_LINES=$(wc -l $fileW | cut -f1 -d' ')
-clear
-echo ""
-echo "Welcome to Typoga. Score to Beat: ${green}$hscore${reset}"
-echo "Press '?' any time to finish game."
-read -n 1 -s -p "Press any key to continue "
-echo ""
-
-# Function that initializes fileMC at the beginning of each phrase
+# Function that initializes misFile at the beginning of each phrase
 function init_miss_f {
-    echo "" >> $fileMC
-    echo -n "$startTime,$rNum:" >> $fileMC
+    echo "" >> $misFile
+    echo -n "$startTime,$rNum:" >> $misFile
 }
 function write_miss {
-    echo -n "[$i:$wordChar:$char]," >> $fileMC
+    echo -n "[$i:$wordChar:$char]," >> $misFile
 }
 # Update word count to calculate wpm
 function upWordCount {
@@ -56,6 +35,64 @@ function upWordCount {
     fi
     wrongWord=0
 }
+# Check if files to store highscores ans misses exist
+function checkScoresFile {
+    # File to read/write highScore. First line has highest score
+    hsFile="scores/highScore_$(echo $1 | awk -F'/' '{ print $2 }')"
+    # File to store missed chars
+    misFile="scores/misses_$(echo $1 | awk -F'/' '{ print $2 }')"
+    # If file does not exist create from base files
+    if [ ! -f $hsFile ]; then
+        cp -f scores/highScore.txt $hsFile
+    fi
+    if [ ! -f $misFile ]; then
+        cp -f scores/misses.txt $misFile
+    fi
+}
+
+clear
+echo ""
+echo "Welcome to Typoga."
+
+options=("Phrases to Lead" "Programming Keywords" "Exit")
+select opt in "${options[@]}"
+do
+    case $opt in
+        "Phrases to Lead")
+            # Get list of phrases
+            fileW='words_phrases/phrases.txt'
+            break
+            ;;
+        "Programming Keywords")
+            # Get list of programing
+            fileW='words_phrases/programming.txt'
+            break
+            ;;
+        "Exit")
+            exit 0
+            ;;
+        *)
+            echo "Invalid Option"
+            ;;
+  esac
+done
+echo ""
+
+# Read the file
+words=(`cat $fileW`)
+# Get total cdnumber of lines
+NUMBER_OF_LINES=$(wc -l $fileW | cut -f1 -d' ')
+
+# Check if we have a place to store/read scores
+checkScoresFile $fileW
+
+# Read Highest score
+hscore=$(head -n 2 $hsFile | sed -n -e 2p | awk -F ':' '{print $2}')
+
+echo "Score to Beat: ${green}$hscore${reset}"
+echo "Press '?' any time to finish game."
+read -n 1 -s -p "Press any key to start "
+echo ""
 
 ################__GAME__################
 
