@@ -20,35 +20,8 @@ missedChar=0 # Number of times you miss the character
 # Indicates if phrase was typed until the end. Penalize score 10% if not.
 incompletePhrase=0
 
-# Function that initializes misFile at the beginning of each phrase
-function init_miss_f {
-    echo "" >> $misFile
-    echo -n "$startTime,$rNum:" >> $misFile
-}
-function write_miss {
-    echo -n "[$i:$wordChar:$char]," >> $misFile
-}
-# Update word count to calculate wpm
-function upWordCount {
-    if [ $wrongWord -eq 0 ]; then
-        ((wordCount++))
-    fi
-    wrongWord=0
-}
-# Check if files to store highscores ans misses exist
-function checkScoresFile {
-    # File to read/write highScore. First line has highest score
-    hsFile="scores/highScore_$(echo $1 | awk -F'/' '{ print $2 }')"
-    # File to store missed chars
-    misFile="scores/misses_$(echo $1 | awk -F'/' '{ print $2 }')"
-    # If file does not exist create from base files
-    if [ ! -f $hsFile ]; then
-        cp -f scores/highScore.txt $hsFile
-    fi
-    if [ ! -f $misFile ]; then
-        cp -f scores/misses.txt $misFile
-    fi
-}
+# Load functions
+source lib/functions.sh
 
 clear
 echo ""
