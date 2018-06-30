@@ -35,11 +35,11 @@ function upWordCount {
     fi
     wrongWord=0
 }
-# Check if files to store highscores ans misses exist
+# Check if files to store highscores and misses exist
 function checkScoresFile {
-    # File to read/write highScore. First line has highest score
+    # File to read/write highScores.
     hsFile="scores/highScore_$(echo $1 | awk -F'/' '{ print $2 }')"
-    # File to store missed chars
+    # File to store misses
     misFile="scores/misses_$(echo $1 | awk -F'/' '{ print $2 }')"
     # If file does not exist create from base files
     if [ ! -f $hsFile ]; then
