@@ -25,7 +25,7 @@ source lib/functions.sh
 
 clear
 echo ""
-echo "Welcome to Typoga."
+printf "Welcome to Typoga. Type as fast as you can.\n\n"
 
 options=("Phrases to Lead" "Programming Keywords" "Exit")
 select opt in "${options[@]}"
@@ -164,7 +164,7 @@ if [ $scFactor -gt 0 ] && [ $hitChar -gt 0 ]; then
         echo "Score: $sc "
     fi
 
-    echo -n "You are a "
+    echo -n "You are fast as "
     getCategory ${wpm%\.*}
 else
     echo "You need at least hit $MinChar2Score characters to get a score."
