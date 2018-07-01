@@ -33,17 +33,17 @@ function checkScoresFile {
 }
 
 declare -A category
-for i in {0..4}; do category[$i]="Snail"; done
-for i in {5..9}; do category[$i]="Walker"; done
-for i in {10..14}; do category[$i]="Jogger"; done
-for i in {15..19}; do category[$i]="Bicycle"; done
-for i in {20..29}; do category[$i]="Dog"; done
-for i in {30..44}; do category[$i]="Bolt"; done
-for i in {45..49}; do category[$i]="Fox"; done
-for i in {50..64}; do category[$i]="Tiger"; done
-for i in {65..69}; do category[$i]="Gazelle"; done
-for i in {70..79}; do category[$i]="Horse"; done
-for i in {80..120}; do category[$i]="CHETAH"; done
+for i in {0..4}; do category[$i]="a Snail"; done
+for i in {5..9}; do category[$i]="a Walking person"; done
+for i in {10..14}; do category[$i]="a Jogger"; done
+for i in {15..19}; do category[$i]="a Bicycle"; done
+for i in {20..29}; do category[$i]="a Dog"; done
+for i in {30..44}; do category[$i]="Usain Bolt"; done
+for i in {45..49}; do category[$i]="a Fox"; done
+for i in {50..64}; do category[$i]="a Tiger"; done
+for i in {65..69}; do category[$i]="a Gazelle"; done
+for i in {70..79}; do category[$i]="a Horse"; done
+for i in {80..120}; do category[$i]="a Cheath"; done
 function getCategory {
     echo "${green}${category[$1]}${reset} ($1)"
 }
