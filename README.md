@@ -23,12 +23,30 @@ Type "?" anytime to exit!
 Releases:
 ---------
 
+**v2018.3:**
+
+-   Added option to select game type.
+
+-   Misses are also saved into file in **score/misses_{gametype}.txt**.
+
+-   Score are saved in **score/highScore_{gametype}.txt.**.
+
+-   Score penalization if phrase/words are not typed until the end.
+
+-   Automatically create score files.
+
+-   Added categories based on wpm speed.
+
+-   Words are not counted for wpm if wrongly typed.
+
+-   Created score and lib folder to store the files.
+
 **v2018.2:**
 
 -   Score calculation improvement. Added minimum hit chars to get score,
     calculation of chars per minute.
 
--   Score is now read/saved to file named **highScore.txt.**
+-   Score is now read/saved to file named **highScore.txt.**.
 
 -   Fixed typos, and minor bugs.
 
