@@ -17,7 +17,7 @@ Run:
 \$ ./typoga.sh
 
 Type "?" anytime to exit!
-
+![gameplay](https://github.com/pelco/typoga/blob/master/lib/img/gameplay.gif)
  
 
 Releases:
