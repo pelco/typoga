@@ -176,7 +176,7 @@ if [ $scFactor -gt 0 ] && [ $hitChar -gt 0 ]; then
     echo -n "Your Category: "
     getCategory ${wpm%\.*}
 else
-    echo "You need at least hit $MinChar2Score characters to get a score."
+    echo "You hit $hitChar characters, you need at least $MinChar2Score to get a score."
 fi
 
 exit 0
