@@ -5,8 +5,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-def parse_file(pfile,pos):
+def parse_file(pfile, pos):
     """
+    Method used to parse pfile and draw grafics in
+    position defined by pos
     """
     # Check if file exists
     if not os.path.exists(pfile):
