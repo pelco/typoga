@@ -57,6 +57,7 @@ def parse_file(pfile, pos):
 
 def main():
     """
+    Main method
     """
     parse_file("scores/highScore_random.txt", 1)
     parse_file("scores/highScore_phrases.txt", 2)
