@@ -59,6 +59,7 @@ def main():
     """
     Main method
     """
+    # Start parsing highscore files
     parse_file("scores/highScore_random.txt", 1)
     parse_file("scores/highScore_phrases.txt", 2)
     parse_file("scores/highScore_programming.txt", 3)
