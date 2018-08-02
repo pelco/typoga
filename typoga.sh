@@ -28,11 +28,11 @@ clear
 echo ""
 printf "Welcome to Typoga. Type as fast as you can.\n\n"
 
-options=("Phrases to Lead" "Programming Keywords" "Exit")
+options=("Phrases for Leaders" "Programming Keywords" "Exit")
 select opt in "${options[@]}"
 do
     case $opt in
-        "Phrases to Lead")
+        "Phrases for Leaders")
             # Get list of phrases
             fileW='words_phrases/phrases.txt'
             break
@@ -114,7 +114,7 @@ while true;do
                 printf "${red}_${reset}"
                 wrongWord=0
             else
-                # If capitalization mismatch
+                # Print the missed character in yellow if capitalization is wrong
                 if [ "${char^^}" == "$wordChar" ] || [ "${char,,}" == "$wordChar" ]; then
                     printf "${yellow}${wordChar}${reset}"
                 else
