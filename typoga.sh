@@ -170,7 +170,7 @@ if [ $scFactor -gt 0 ] && [ $hitChar -gt 0 ]; then
         echo "Score: $sc "
     fi
 
-    echo -n "You are fast as "
+    echo -n "Your Category: "
     getCategory ${wpm%\.*}
 else
     echo "You need at least hit $MinChar2Score characters to get a score."
