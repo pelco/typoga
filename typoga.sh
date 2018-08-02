@@ -4,6 +4,7 @@ IFS=$'\n'
 
 red=`tput setaf 1`
 green=`tput setaf 2`
+yellow=`tput setaf 3`
 reset=`tput sgr0`
 
 MinChar2Score=80 # Minimum number of chars to hit
@@ -113,7 +114,12 @@ while true;do
                 printf "${red}_${reset}"
                 wrongWord=0
             else
-                printf "${red}${wordChar}${reset}"
+                # If capitalization mismatch
+                if [ "${char^^}" == "$wordChar" ] || [ "${char,,}" == "$wordChar" ]; then
+                    printf "${yellow}${wordChar}${reset}"
+                else
+                    printf "${red}${wordChar}${reset}"
+                fi
                 wrongWord=1 # Signalize wrong word typed
             fi
             # Count number of times missed
