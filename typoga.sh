@@ -28,17 +28,20 @@ clear
 echo ""
 printf "Welcome to Typoga. Type as fast as you can.\n\n"
 
-options=("Phrases for Leaders" "Programming Keywords" "Exit")
+# Get list of Phrases/Words
+options=("Random" "Phrases for Leaders" "Programming Keywords" "Exit")
 select opt in "${options[@]}"
 do
     case $opt in
+        "Random")
+            fileW='words_phrases/random.txt'
+            break
+            ;;
         "Phrases for Leaders")
-            # Get list of phrases
             fileW='words_phrases/phrases.txt'
             break
             ;;
         "Programming Keywords")
-            # Get list of programing
             fileW='words_phrases/programming.txt'
             break
             ;;
