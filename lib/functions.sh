@@ -32,6 +32,7 @@ function checkScoresFile {
     fi
 }
 
+# The values reflect km/h
 declare -A category
 for i in {0..4}; do category[$i]="a Snail"; done
 for i in {5..9}; do category[$i]="a Walking person"; done
