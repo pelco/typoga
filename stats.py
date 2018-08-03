@@ -5,8 +5,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-def parse_file(pfile,pos):
+def parse_file(pfile, pos):
     """
+    Method used to parse pfile and draw grafics in
+    position defined by pos
     """
     # Check if file exists
     if not os.path.exists(pfile):
@@ -55,7 +57,9 @@ def parse_file(pfile,pos):
 
 def main():
     """
+    Main method
     """
+    # Start parsing highscore files
     parse_file("scores/highScore_random.txt", 1)
     parse_file("scores/highScore_phrases.txt", 2)
     parse_file("scores/highScore_programming.txt", 3)
