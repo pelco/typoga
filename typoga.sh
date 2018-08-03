@@ -4,6 +4,7 @@ IFS=$'\n'
 
 red=`tput setaf 1`
 green=`tput setaf 2`
+yellow=`tput setaf 3`
 reset=`tput sgr0`
 
 MinChar2Score=80 # Minimum number of chars to hit
@@ -27,11 +28,11 @@ clear
 echo ""
 printf "Welcome to Typoga. Type as fast as you can.\n\n"
 
-options=("Phrases to Lead" "Programming Keywords" "Exit")
+options=("Phrases for Leaders" "Programming Keywords" "Exit")
 select opt in "${options[@]}"
 do
     case $opt in
-        "Phrases to Lead")
+        "Phrases for Leaders")
             # Get list of phrases
             fileW='words_phrases/phrases.txt'
             break
@@ -113,7 +114,12 @@ while true;do
                 printf "${red}_${reset}"
                 wrongWord=0
             else
-                printf "${red}${wordChar}${reset}"
+                # Print the missed character in yellow if capitalization is wrong
+                if [ "${char^^}" == "$wordChar" ] || [ "${char,,}" == "$wordChar" ]; then
+                    printf "${yellow}${wordChar}${reset}"
+                else
+                    printf "${red}${wordChar}${reset}"
+                fi
                 wrongWord=1 # Signalize wrong word typed
             fi
             # Count number of times missed
@@ -164,7 +170,7 @@ if [ $scFactor -gt 0 ] && [ $hitChar -gt 0 ]; then
         echo "Score: $sc "
     fi
 
-    echo -n "You are fast as "
+    echo -n "Your Category: "
     getCategory ${wpm%\.*}
 else
     echo "You need at least hit $MinChar2Score characters to get a score."
