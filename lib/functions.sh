@@ -5,11 +5,13 @@ function init_miss_f {
     echo "" >> $misFile
     echo -n "$startTime,$rNum:" >> $misFile
 }
+
 # Function that writes missed chars to misse file
 function write_miss {
     # writr characterIndex, charToHit, charTyped
     echo -n "[$i:$wordChar:$char]," >> $misFile
 }
+
 # Update word count to calculate wpm
 function upWordCount {
     if [ $wrongWord -eq 0 ]; then
@@ -17,6 +19,7 @@ function upWordCount {
     fi
     wrongWord=0
 }
+
 # Check if files to store highscores and misses exist
 function checkScoresFile {
     # File to read/write highScores.
