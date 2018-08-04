@@ -4,8 +4,27 @@ import sys
 import matplotlib.pyplot as plt
 import numpy as np
 
+options = {
+    "1" : "Scores",
+    "2" : "Accuracy",
+    "3" : "Words per minute",
+    "4" : "Chars per minute",
+    "5" : "Number of Words",
+    "6" : "Number of Hit Chars",
+    "7" : "Number of Missed Chars",
+    "8" : "Gameplay Time"
+}
 
-def parse_file(pfile, pos):
+def usage():
+    """
+    Print Usage information
+    """
+    print("Usage: %s <option>" % sys.argv[0])
+    print("Select one option from below:")
+    for opt, desc in options.items():
+        print("  %s - %s" % (opt, desc))
+
+def parse_file(pfile, pos, index, title):
     """
     Method used to parse pfile and draw grafics in
     position defined by pos
@@ -27,10 +46,10 @@ def parse_file(pfile, pos):
         line = line.strip() # remove \n
         line = line.split(":")
 
-        scores.append(float(line[1])) # store only highscores
+        scores.append(float(line[index])) # store data
 
     if len(scores) == 0:
-        print("You should have at least 1 highscores for %s" % pfile)
+        print("You should have at least 1 line with scores for %s" % pfile)
         return
 
     # Calculate mean value before appending 0 value at the end
@@ -41,7 +60,7 @@ def parse_file(pfile, pos):
     x = np.arange(1,len(scores)+1)
 
     plt.subplot(3, 1, pos)
-    plt.ylabel('HighScores')
+    plt.ylabel(title)
     plt.title(pfile)
 
     # Draw bar plot
@@ -59,12 +78,19 @@ def main():
     """
     Main method
     """
+    # Check for minimum requirements
+    if (len(sys.argv) == 1) or (sys.argv[1] not in options):
+        usage()
+        exit(0)
+
+    index = int(sys.argv[1])
+    title = options[sys.argv[1]]
     # Setup Window title and size
-    plt.figure(num='HighScores', figsize=(18,8))
+    plt.figure(num=title, figsize=(18,9))
     # Start parsing highscore files
-    parse_file("scores/highScore_random.txt", 1)
-    parse_file("scores/highScore_phrases.txt", 2)
-    parse_file("scores/highScore_programming.txt", 3)
+    parse_file("scores/highScore_random.txt", 1, index, title)
+    parse_file("scores/highScore_phrases.txt", 2, index, title)
+    parse_file("scores/highScore_programming.txt", 3, index, title)
     plt.xlabel('N Games')
     plt.show()
 
