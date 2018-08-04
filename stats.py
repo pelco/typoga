@@ -49,7 +49,7 @@ def parse_file(pfile, pos, index, title):
         scores.append(float(line[index])) # store data
 
     if len(scores) == 0:
-        print("You should have at least 1 line with scores for %s" % pfile)
+        print("You should have at least 1 highscore in %s" % pfile)
         return
 
     # Calculate mean value before appending 0 value at the end
