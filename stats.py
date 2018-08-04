@@ -59,6 +59,8 @@ def main():
     """
     Main method
     """
+    # Setup Window title and size
+    plt.figure(num='HighScores', figsize=(18,8))
     # Start parsing highscore files
     parse_file("scores/highScore_random.txt", 1)
     parse_file("scores/highScore_phrases.txt", 2)
