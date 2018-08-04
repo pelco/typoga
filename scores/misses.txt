@@ -1,2 +1,2 @@
-# epochTime,LineNumber:[charIndex,charTyped]
-____________________________________________
+# epochTime,LineNumber:[charIndex:charMiss:charTyped],
+_______________________________________________________
