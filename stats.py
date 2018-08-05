@@ -71,8 +71,8 @@ def parse_file(pfile, pos, index, title):
     plt.text(max_val+1, scores[max_val], ("%.02f" % scores[max_val]), fontsize=10, color='black')
 
     # Draw mean line
-    mean_line = plt.plot([0, len(scores)], [mean, mean], 'r')
-    plt.text(len(scores), mean, ("%.02f" % mean), fontsize=10, color='red')
+    plt.plot([0, len(scores)], [mean, mean], 'black')
+    plt.text(len(scores), mean, ("%.02f" % mean), fontsize=10, color='black')
 
 def main():
     """
