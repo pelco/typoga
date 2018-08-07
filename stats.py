@@ -61,7 +61,8 @@ def parse_file(pfile, pos, index, title):
 
     plt.subplot(3, 1, pos)
     plt.ylabel(title)
-    plt.title(pfile)
+    # Set sitle
+    plt.title(pfile.split('_')[1].split('.')[0])
 
     # Draw bar plot
     plt.bar(x, scores)
