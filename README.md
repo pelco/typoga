@@ -1,13 +1,12 @@
 Typoga
 ======
 
-Typoga is a different touch typing game.
+Typoga is a touch typing game.
 
 #### Description
 
-Hey! Try out Typoga! Typoga is touch typing game where you need
-to type words as fast as you can. The more accurate and
-fast you are, the higher your score. All your scores are saved so
+Hey! Typoga is touch typing game where you need
+to type words as fast as you can. All your scores are saved so
 that you can track your progress.
 
 #### Instructions
