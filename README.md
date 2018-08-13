@@ -19,7 +19,7 @@ Run:
 Type "?" anytime to exit!
 ![gameplay](https://github.com/pelco/typoga/blob/master/lib/img/gameplay.gif)
 
-Track you progress:
+#### Track you progress:
 
 \$ ./stats.py 1
 ![gameplay](https://github.com/pelco/typoga/blob/master/lib/img/scores.png)
