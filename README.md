@@ -29,7 +29,7 @@ Type "?" anytime to exit!
 Releases:
 ---------
 
-**v2018.3:**
+**v2018.4:**
 
 -   Added new list of RANDOM phrases.
 
