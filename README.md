@@ -31,6 +31,14 @@ Releases:
 
 **v2018.3:**
 
+-   Added new list of RANDOM phrases.
+
+-   Capitalization errors are shown as yellow.
+
+-   Added tool to show statistics/progress information.
+
+**v2018.3:**
+
 -   Added option to select game type.
 
 -   Misses are also saved into file in **score/misses_{gametype}.txt**.
