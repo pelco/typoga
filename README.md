@@ -2,6 +2,7 @@ Typoga
 ======
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/7d837401dd8946a28f55be56836a857e)](https://app.codacy.com/project/pelco/typoga/dashboard)
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://github.com/pelco/typoga/raw/master/LICENSE)
 
 Typoga is a touch typing game.
 
@@ -20,12 +21,12 @@ Run:
 Type "?" anytime to exit!
 ![gameplay](https://github.com/pelco/typoga/blob/master/lib/img/gameplay.gif)
 
-# Track you progress:
+# Track you progress
 
-\$ ./stats.py 1
+\$ ./stats.py 1 (score)
 ![gameplay](https://github.com/pelco/typoga/blob/master/lib/img/scores.png)
 
-\$ ./stats.py 2
+\$ ./stats.py 2 (accuracy)
 ![gameplay](https://github.com/pelco/typoga/blob/master/lib/img/accuracy.png)
 
 Releases
