@@ -3,16 +3,15 @@ Typoga
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/7d837401dd8946a28f55be56836a857e)](https://app.codacy.com/project/pelco/typoga/dashboard)
 
-
 Typoga is a touch typing game.
 
-**Description**
+# Description
 
 Hey! Typoga is touch typing game where you need
 to type as fast as you can. All your scores are saved so
 that you can track your progress.
 
-**Instructions**
+# Instructions
 
 Run:
 
@@ -21,7 +20,7 @@ Run:
 Type "?" anytime to exit!
 ![gameplay](https://github.com/pelco/typoga/blob/master/lib/img/gameplay.gif)
 
-**Track you progress:**
+# Track you progress:
 
 \$ ./stats.py 1
 ![gameplay](https://github.com/pelco/typoga/blob/master/lib/img/scores.png)
@@ -29,7 +28,7 @@ Type "?" anytime to exit!
 \$ ./stats.py 2
 ![gameplay](https://github.com/pelco/typoga/blob/master/lib/img/accuracy.png)
 
-Releases:
+Releases
 ---------
 
 **v2018.4:**
@@ -77,4 +76,4 @@ Releases:
 
 -   Game implements basic functionality.
 
--   Based in the script: https://github.com/Orbmancer/bash-typing-game
+-   Based in the script: [bash-typing-game](https://github.com/Orbmancer/bash-typing-game)
