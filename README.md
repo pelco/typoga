@@ -1,6 +1,9 @@
 Typoga
 ======
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/7d837401dd8946a28f55be56836a857e)](https://app.codacy.com/app/pelco/typoga?utm_source=github.com&utm_medium=referral&utm_content=pelco/typoga&utm_campaign=Badge_Grade_Dashboard)
+
+
 Typoga is a touch typing game.
 
 #### Description
