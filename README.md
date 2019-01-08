@@ -1,18 +1,18 @@
 Typoga
 ======
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/7d837401dd8946a28f55be56836a857e)](https://app.codacy.com/app/pelco/typoga?utm_source=github.com&utm_medium=referral&utm_content=pelco/typoga&utm_campaign=Badge_Grade_Dashboard)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/7d837401dd8946a28f55be56836a857e)](https://app.codacy.com/project/pelco/typoga/dashboard)
 
 
 Typoga is a touch typing game.
 
-#### Description
+**Description**
 
 Hey! Typoga is touch typing game where you need
-to type words as fast as you can. All your scores are saved so
+to type as fast as you can. All your scores are saved so
 that you can track your progress.
 
-#### Instructions
+**Instructions**
 
 Run:
 
@@ -21,7 +21,7 @@ Run:
 Type "?" anytime to exit!
 ![gameplay](https://github.com/pelco/typoga/blob/master/lib/img/gameplay.gif)
 
-#### Track you progress:
+**Track you progress:**
 
 \$ ./stats.py 1
 ![gameplay](https://github.com/pelco/typoga/blob/master/lib/img/scores.png)
