@@ -8,9 +8,20 @@ Typoga is a touch typing game.
 
 # Description
 
-Hey! Typoga is touch typing game where you need
-to type as fast as you can. All your scores are saved so
-that you can track your progress.
+Hey! Typoga is touch typing game where type as fast as you can.
+All your scores are saved so that you can track your progress.
+
+# Setup
+
+Install python 3:
+```bash
+sudo apt-get install python3 python3-pip python3-tk
+```
+
+Install packages:
+```bash
+pip3 install matplotlib numpy
+```
 
 # Instructions
 
