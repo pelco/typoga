@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import os
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.widgets import CheckButtons
@@ -28,24 +29,92 @@ def func(label):
     plt.draw()
 check.on_clicked(func)
 
-#plt.show()
+# plt.show()
 plt.close()
 ###########################################################
-rax = plt.axes()
-checkBut = CheckButtons(rax, 
-    ('Random', 'Ph Leaders', 'Programming'),
-    (False, False, False))
+
+WINDOW_TITLE = "Game Options"
+# Game Options
+RANDOM = "Random"
+PH_LEADERS = "Ph Leaders"
+PROGRAMMING = "Programming"
+
+gameOptions = [
+    RANDOM,
+    PH_LEADERS,
+    PROGRAMMING ]
+
+socreOptions = [
+    "Scores",
+    "Accuracy",
+    "Words per minute",
+    "Chars per minute",
+    "Number of Words",
+    "Number of Hit Chars",
+    "Number of Missed Chars",
+    "Gameplay Time"
+
+]
 
 class TypogaDraw:
 
+    title = "Typoga Scores"
+    randFilePath = "scores/highScore_random.txt"
+    leadFilePath = "scores/highScore_phrases.txt"
+    progFilePath = "scores/highScore_programming.txt"
+
     def __init__(self):
-        print("Hello")
+        # Set Window Title and Size
+        plt.figure(num=self.title, figsize=(16,8))
+
+    def checkForScoreFiles(self):
+        """
+        Check if highscore files exist. If not remove it form selection.
+        """
+        if not os.path.exists(self.randFilePath):
+            gameOptions.remove(RANDOM)
+
+        if not os.path.exists(self.leadFilePath):
+            gameOptions.remove(PH_LEADERS)
+
+        if not os.path.exists(self.progFilePath):
+            gameOptions.remove(PROGRAMMING)
+        
+        # If no options are available tell user to the play game.
+        if len(gameOptions) == 0:
+            print("You should first play the game.\n Run ./typoga.sh")
+            exit(0)
+
+    def checkBoxesInit(self):
+        """
+        """
+        self.checkForScoreFiles()
+        # Initialize CheckBox Menu for Game Options
+        raxGO = plt.axes([0.01, 0.8, 0.1, 0.15], frameon = False, title = WINDOW_TITLE)
+        self.checkButGO = CheckButtons(raxGO, gameOptions, (False, False, False))
+        # Set CheckBox handler for game Options
+        self.checkButGO.on_clicked(self.handleUserSelection)
+
+        # Initialize CheckBox Menu for Score Options
+        raxSO = plt.axes([0.01, 0.6, 0.1, 0.2], frameon = False)
+        self.checkButSO = CheckButtons(raxSO, socreOptions,
+                    (False, False, False, False, False, False, False, False))
+        # Set CheckBox handler for game Options
+        self.checkButSO.on_clicked(self.handleUserSelection)
 
     def handleUserSelection(self, label):
         print(label)
+        if label == RANDOM:
+            print("Rand")
+        elif label == PH_LEADERS:
+            print("Lead")
+        elif label == PROGRAMMING:
+            print("Prog")
+        plt.draw()
 
     def run(self):
-        checkBut.on_clicked(self.handleUserSelection)
+        self.checkBoxesInit()
+        #show all
         plt.show() 
 
 if __name__ == '__main__':
