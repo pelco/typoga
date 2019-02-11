@@ -34,11 +34,7 @@ Type "?" anytime to exit!
 
 # Track you progress
 
-\$ ./stats.py 1 (score)
-![gameplay](https://github.com/pelco/typoga/blob/master/lib/img/scores.png)
-
-\$ ./stats.py 2 (accuracy)
-![gameplay](https://github.com/pelco/typoga/blob/master/lib/img/accuracy.png)
+\$ ./scores.py
 
 Releases
 ---------

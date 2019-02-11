@@ -109,9 +109,6 @@ class TypogaDraw:
         else:
             plt.close()
 
-        #plt.draw()
-
-    #def parseFile(self, pfile, pos, index, title):
     def parseFile(self, pfile, rows):
         """
         Method used to parse pfile and draw grafics
@@ -157,10 +154,13 @@ class TypogaDraw:
         plt.xticks(x)
         # Draw bar plot
         plt.bar(x, scores)
+        # Add text legends to each bar
+        for i in range(len(scores)-1): # -1 because we appended zero at the end
+            plt.text(i+0.8, scores[i]/2, ("%.02f" % scores[i]), fontsize=8, color='black')
         # Draw orange bar for the highest value
         max_val = np.argmax(scores)
         plt.bar(max_val+1, scores[max_val], color='orange')
-        plt.text(max_val+1, scores[max_val], ("%.02f" % scores[max_val]), fontsize=10, color='black')
+        #plt.text(max_val+1, scores[max_val], ("%.02f" % scores[max_val]), fontsize=10, color='black')
 
         # Draw mean line
         plt.plot([0, len(scores)], [mean, mean], 'black')
