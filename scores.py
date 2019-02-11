@@ -77,6 +77,11 @@ class TypogaDraw:
            not os.path.exists(self.progFilePath):
             print("You should first play the game.\n Run ./typoga.sh")
             exit(0)
+        
+        self.checkButGO = None
+        self.checkButGO = None
+
+        self.pos = 1
 
     def checkBoxesInit(self):
         """
@@ -100,11 +105,9 @@ class TypogaDraw:
     def handleUserSelection(self, label):
         """
         """
-        print(self.checkButGO.get_status())
-        print(self.checkButSO.get_status())
+        self.pos = 1
         #fig = plt.figure(num=WINDOW_TITLE)
-        #fig.clear()
-        print(self.checkButSO.get_status().count(True))
+        fig.clear()
 
         # Divide plot based on user selection
         cols = self.checkButGO.get_status().count(True) 
@@ -112,25 +115,24 @@ class TypogaDraw:
 
         # Draw Random selected data
         if self.checkButGO.get_status()[0] == True :
-            self.parse_file(self.randFilePath, cols, rows)
+            self.parseFile(self.randFilePath, cols, rows)
 
         # Draw Leaders selected data
         if self.checkButGO.get_status()[1] == True :
-            self.parse_file(self.leadFilePath, cols, rows)
+            self.parseFile(self.leadFilePath, cols, rows)
 
         # Draw Programming selected data
         if self.checkButGO.get_status()[2] == True :
-            self.parse_file(self.progFilePath, cols, rows)
+            self.parseFile(self.progFilePath, cols, rows)
 
         plt.draw()
 
-    #def parse_file(self, pfile, pos, index, title):
-    def parse_file(self, pfile, cols, rows):
+    #def parseFile(self, pfile, pos, index, title):
+    def parseFile(self, pfile, cols, rows):
         """
         Method used to parse pfile and draw grafics
         """
-        scores=[]
-         # Check if file exists
+        # Check if file exists
         if not os.path.exists(pfile):
             print("File %s does not exist" % pfile)
             return
@@ -140,40 +142,50 @@ class TypogaDraw:
             lines = hsf.readlines()
             lines = lines[3:] # skip header
 
-            scores=[]
+            #scores=[[],[]]
+            scores = [[]] * len(self.checkButSO.get_status())
             # Read every line
-            for line in lines:
-                #print line
-                line = line.strip() # remove \n
-                line = line.split(":")
+            for scoreLine in lines:
+                scoreLine = scoreLine.strip() # remove \n
+                scoreLine = scoreLine.split(":")
+                print(scoreLine)
+                for i in range(len(self.checkButSO.get_status())):
+                    scores[i].append(float(scoreLine[i+1])) # store data
 
-                scores.append(float(line[index])) # store data
+            self.plotData(scores, cols, rows)
+    
+    def plotData(self, scores, cols, rows):
+        """
+        """
+        # Parse all selected Score options
+        for i in range(len(self.checkButSO.get_status())):
+            if self.checkButSO.get_status()[i] == True:
 
-        if len(scores) == 0:
-            scores.append(0)
+                if len(scores[i]) == 0:
+                    scores[i].append(0)
 
-        # Calculate mean value before appending 0 value at the end
-        mean = np.mean(scores)
-        # Append zero to get space to print mean value
-        scores.append(0)
+                # Calculate mean value before appending 0 value at the end
+                mean = np.mean(scores[i])
+                # Append zero to get space to print mean value
+                scores[i].append(0)
 
-        x = np.arange(1,len(scores)+1)
+                x = np.arange(1, len(scores[i])+1)
 
-        plt.subplot(3, 1, pos)
-        plt.ylabel(title)
-        # Set sitle
-        plt.title(pfile.split('_')[1].split('.')[0])
+                plt.subplot(rows, cols, self.pos)
+                self.pos += 1
 
-        # Draw bar plot
-        plt.bar(x, scores)
-        # Draw orange bar for the highest value
-        max_val = np.argmax(scores)
-        plt.bar(max_val+1, scores[max_val], color='orange')
-        plt.text(max_val+1, scores[max_val], ("%.02f" % scores[max_val]), fontsize=10, color='black')
+                plt.ylabel(socreOptions[i])
+                plt.xlabel('n Games played')
+                # Draw bar plot
+                plt.bar(x, scores[i])
+                # Draw orange bar for the highest value
+                max_val = np.argmax(scores[i])
+                plt.bar(max_val+1, scores[i][max_val], color='orange')
+                plt.text(max_val+1, scores[i][max_val], ("%.02f" % scores[i][max_val]), fontsize=10, color='black')
 
-        # Draw mean line
-        plt.plot([0, len(scores)], [mean, mean], 'black')
-        plt.text(len(scores), mean, ("%.02f" % mean), fontsize=10, color='black')
+                # Draw mean line
+                plt.plot([0, len(scores[i])], [mean, mean], 'black')
+                plt.text(len(scores[i]), mean, ("%.02f" % mean), fontsize=10, color='black')
 
 
     def run(self):
