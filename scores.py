@@ -3,35 +3,6 @@ import os
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.widgets import CheckButtons
-############################################################
-t = np.arange(0.0, 2.0, 0.01)
-s0 = np.sin(2*np.pi*t)
-s1 = np.sin(4*np.pi*t)
-s2 = np.sin(6*np.pi*t)
-
-fig, ax = plt.subplots()
-l0, = ax.plot(t, s0, visible=False, lw=2)
-l1, = ax.plot(t, s1, lw=2)
-l2, = ax.plot(t, s2, lw=2)
-plt.subplots_adjust(left=0.2)
-
-rax = plt.axes([0.05, 0.4, 0.1, 0.15])
-check = CheckButtons(rax, ('2 Hz', '4 Hz', '6 Hz'), (False, True, True))
-
-
-def func(label):
-    if label == '2 Hz':
-        l0.set_visible(not l0.get_visible())
-    elif label == '4 Hz':
-        l1.set_visible(not l1.get_visible())
-    elif label == '6 Hz':
-        l2.set_visible(not l2.get_visible())
-    plt.draw()
-check.on_clicked(func)
-
-# plt.show()
-plt.close()
-###########################################################
 
 WINDOW_TITLE = "Game Options"
 
@@ -54,7 +25,6 @@ socreOptions = [
     "Number of Hit Chars",
     "Number of Missed Chars",
     "Gameplay Time"
-
 ]
 
 class TypogaDraw:
@@ -77,7 +47,7 @@ class TypogaDraw:
            not os.path.exists(self.progFilePath):
             print("You should first play the game.\n Run ./typoga.sh")
             exit(0)
-        
+
         self.checkButGO = None
         self.checkButGO = None
 
@@ -104,13 +74,13 @@ class TypogaDraw:
 
     def handleUserSelection(self, label):
         """
-        """    
+        """
 
         # Divide plot based on user selection
         rows = self.checkButSO.get_status().count(True)
-  
+
         # Draw Random selected data
-        fig = plt.figure(num=gameOptions[0])
+        fig = plt.figure(num=gameOptions[0], figsize=(6,8))
         if self.checkButGO.get_status()[0] == True :
             self.pos = 1
             fig.clear()
@@ -120,7 +90,7 @@ class TypogaDraw:
             plt.close()
 
         # Draw Leaders selected data
-        fig = plt.figure(num=gameOptions[1])
+        fig = plt.figure(num=gameOptions[1], figsize=(6,8))
         if self.checkButGO.get_status()[1] == True :
             self.pos = 1
             fig.clear()
@@ -130,7 +100,7 @@ class TypogaDraw:
             plt.close()
 
         # Draw Programming selected data
-        fig = plt.figure(num=gameOptions[2])
+        fig = plt.figure(num=gameOptions[2], figsize=(6,8))
         if self.checkButGO.get_status()[2] == True :
             self.pos = 1
             fig.clear()
@@ -139,8 +109,7 @@ class TypogaDraw:
         else:
             plt.close()
 
-        plt.draw()
-        
+        #plt.draw()
 
     #def parseFile(self, pfile, pos, index, title):
     def parseFile(self, pfile, rows):
@@ -157,17 +126,6 @@ class TypogaDraw:
             lines = hsf.readlines()
             lines = lines[3:] # skip header
 
-            #scores = []
-            # Read every line
-            # for scoreLine in lines:
-            #     scoreLine = scoreLine.strip() # remove \n
-            #     scoreLine = scoreLine.split(":")
-            #     print(scoreLine)
-            #     for i in range(len(self.checkButSO.get_status())):
-            #         # Parse all selected Score options
-            #         if self.checkButSO.get_status()[i] == True:
-            #             scores.append(float(scoreLine[i+1])) # store data
-
             for i in range(len(self.checkButSO.get_status())):
                 scores = []
                 if self.checkButSO.get_status()[i] == True:
@@ -178,7 +136,7 @@ class TypogaDraw:
                         scores.append(float(scoreLine[i+1])) # store data
 
                     self.plotData(scores, rows, i)
-    
+
     def plotData(self, scores, rows, index):
         """
         """
@@ -190,13 +148,13 @@ class TypogaDraw:
         # Append zero to get space to print mean value
         scores.append(0)
 
-        x = np.arange(1, len(scores)+1)
+        x = np.arange(1, len(scores)+1, 1)
         
         plt.subplot(rows, 1, self.pos)
         self.pos += 1
 
         plt.ylabel(socreOptions[index])
-        plt.xlabel('n Games played')
+        plt.xticks(x)
         # Draw bar plot
         plt.bar(x, scores)
         # Draw orange bar for the highest value
@@ -212,7 +170,7 @@ class TypogaDraw:
     def run(self):
         self.checkBoxesInit()
         #show all
-        plt.show() 
+        plt.show()
 
 if __name__ == '__main__':
     """
