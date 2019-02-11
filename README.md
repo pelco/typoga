@@ -43,6 +43,14 @@ Type "?" anytime to exit!
 Releases
 ---------
 
+**v2019.1:**
+
+-   New python script (scores.py) to view game scores
+    
+-   Update gameplay images
+
+-   Fixed some codacy issues
+
 **v2018.4:**
 
 -   Added new list of RANDOM phrases.
