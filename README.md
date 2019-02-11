@@ -38,6 +38,8 @@ Type "?" anytime to exit!
 ./scores.py
 ```
 
+![gameplay](https://github.com/pelco/typoga/blob/master/lib/img/scores.png)
+
 Releases
 ---------
 
